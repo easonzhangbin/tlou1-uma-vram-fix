@@ -1,0 +1,17 @@
+name: Windows tests
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        shell: [powershell, pwsh]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run rejection and hardware eligibility tests
+        shell: ${{ matrix.shell }}
+        run: |
+          ./tests/Test.ps1
+          ./tests/RenderMenu.Tests.ps1

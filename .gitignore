@@ -1,0 +1,11 @@
+*.exe
+*.dll
+*.zip
+*.bak
+*.log
+__pycache__/
+tlou-vram-backups/
+tlou-render-menu-backups/
+*.etl
+*.rgp
+.test-artifacts/
