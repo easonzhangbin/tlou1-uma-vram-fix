@@ -3,15 +3,21 @@ on: [push, pull_request, workflow_dispatch]
 permissions:
   contents: read
 jobs:
-  test:
+  windows-powershell:
     runs-on: windows-latest
-    strategy:
-      matrix:
-        shell: [powershell, pwsh]
     steps:
       - uses: actions/checkout@v4
       - name: Run rejection and hardware eligibility tests
-        shell: ${{ matrix.shell }}
+        shell: powershell
+        run: |
+          ./tests/Test.ps1
+          ./tests/RenderMenu.Tests.ps1
+  powershell-7:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run rejection and hardware eligibility tests
+        shell: pwsh
         run: |
           ./tests/Test.ps1
           ./tests/RenderMenu.Tests.ps1
